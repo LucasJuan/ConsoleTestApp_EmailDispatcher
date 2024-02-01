@@ -3,10 +3,15 @@
     public class EmailDispatcher
     {
 
-        public void Dispatch(dynamic email) 
+        public void Dispatch(Email email) 
         {
-            string emailType = email.type;
-            switch (emailType)
+            if (string.IsNullOrEmpty(email.Type))
+            {
+                Console.WriteLine("Email object is null.");
+                return;
+            }
+
+            switch (email.Type)
             {
                 case "spam":
                     new SpamHandler().Handle();
@@ -21,7 +26,16 @@
                     new MiscHandler().Handle();
                     break;
                 default:
-                    throw new ArgumentException($"Unknown email type: {emailType}");
+                    throw new ArgumentException($"Unknown email type: {email.Type}");
+            }
+        }
+
+        public class Email
+        {
+            public string Type { get; set; }
+            public Email(string type)
+            {
+                Type = type;
             }
         }
 

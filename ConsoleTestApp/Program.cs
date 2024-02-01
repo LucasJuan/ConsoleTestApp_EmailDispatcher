@@ -1,8 +1,9 @@
 ﻿using ConsoleTestApp;
+using static ConsoleTestApp.EmailDispatcher;
 
 EmailDispatcher dispatcher = new EmailDispatcher();
 
-var spamEmail = new { type = "spam" };
+var spamEmail = new Email("spam");
 
 dispatcher.Dispatch(spamEmail);
 
