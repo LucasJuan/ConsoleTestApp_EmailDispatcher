@@ -2,7 +2,7 @@
 
 EmailDispatcher dispatcher = new EmailDispatcher();
 
-dynamic spamEmail = new { type = "spam" };
+var spamEmail = new { type = "spam" };
 
 dispatcher.Dispatch(spamEmail);
 
